@@ -11,14 +11,19 @@ body{
   margin:0
 }
 .logo{
-  font-size:24px;
+  font-size:28px;
   font-weight:700;
   color:#0077cc;
-  letter-spacing:.5px;
+  letter-spacing:1px;
   margin-bottom:20px;
   text-align:center;
   text-shadow:0 2px 4px rgba(0,0,0,.08);
   animation:fadeIn .8s ease
+}
+.logo .strong{
+  color:#005fa3;
+  font-weight:900;
+  text-shadow:0 0 8px rgba(0,119,204,.4);
 }
 @keyframes fadeIn{
   from{opacity:0;transform:translateY(-10px)}
