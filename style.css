@@ -11,8 +11,8 @@ body{
 }
 .box{
   background:#fff;
-  width:320px;
-  padding:24px 26px;
+  width:360px;
+  padding:26px 30px;
   border-radius:8px;
   border:1px solid rgba(0,0,0,.1);
   box-shadow:0 6px 20px rgba(0,0,0,.08);
@@ -24,12 +24,12 @@ body{
 }
 h2{
   text-align:center;
-  margin:0 0 18px;
+  margin:0 0 20px;
   color:#333;
   font-size:22px;
   font-weight:600
 }
-form{display:grid;gap:12px}
+form{display:grid;gap:14px}
 label{
   display:block;
   margin:4px 0 4px;
@@ -47,6 +47,7 @@ input{
   background:#fff;
   transition:border-color .2s,box-shadow .2s,transform .06s
 }
+input::placeholder{color:#aaa;font-size:13px}
 input:hover{border-color:#bdbdbd}
 input:focus{
   border-color:#0077cc;
@@ -87,7 +88,7 @@ button:hover{
 button:active{transform:translateY(1px)}
 .foot{
   text-align:center;
-  margin-top:8px;
+  margin-top:10px;
   font-size:12px;
   color:#444
 }
