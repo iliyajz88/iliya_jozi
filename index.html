@@ -1,57 +1,50 @@
+@ -0,0 +1,49 @@
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>iliya jozi</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #e0e0e0;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    .box {
-      background-color: pink;
-      color: purple;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #999;
-      border-radius: 8px;
-    }
-    .box p {
-      margin: 5px 0;
-    }
-    @media (max-width: 480px) {
-      .container {
-        width: 90%;
-      }
-    }
-  </style>
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="box">
+    <h2>Register</h2>
+    <form id="form" novalidate>
+      <div>
+        <label>Email</label>
+        <input id="email" type="email" required>
+      </div>
+      <div>
+        <label>Password</label>
+        <input id="pw" type="password" required minlength="8">
+      </div>
+      <div>
+        <label>Confirm Password</label>
+        <input id="pw2" type="password" required>
+        <div id="msg" class="match"></div>
+      </div>
+      <button type="submit">Sign Up</button>
+      <div class="foot">
+        Already have an account? <a href="#" style="color:#0077cc;text-decoration:none">Sign in</a>
+      </div>
+    </form>
+  </div>
 
-  <div class="container">
-    <div class="box">
-      <p>this is an update from my site i hope you enjoy it</p>
-      <p>this is an update from my site i hope you enjoy it</p>
-    </div>
-
-    <div class="box">
-      <p>this is an update from my site i hope you enjoy it</p>
-      <p>this is an update from my site i hope you enjoy it</p>
-    </div>
-
-    <div class="box">
-      <p>this is an update from my site i hope you enjoy it</p>
-      <p>this is an update from my site i hope you enjoy it</p>
-    </div>
-
-    <div class="box">
-      <p>this is an update from my site i hope you enjoy it</p>
-      <p>th
+  <script>
+    const form=document.getElementById('form');
+    const pw=document.getElementById('pw');
+    const pw2=document.getElementById('pw2');
+    const msg=document.getElementById('msg');
+    function check(){
+      if(!pw2.value){msg.textContent='';msg.className='match';pw2.setCustomValidity('');return;}
+      if(pw.value===pw2.value){msg.textContent='Passwords match';msg.className='match ok';pw2.setCustomValidity('')}
+      else{msg.textContent='Passwords do not match';msg.className='match';pw2.setCustomValidity('no')}
+    }
+    pw.addEventListener('input',check);
+    pw2.addEventListener('input',check);
+    form.addEventListener('submit',e=>{check();if(!form.checkValidity())e.preventDefault()});
+  </script>
+</body>
+</html>
