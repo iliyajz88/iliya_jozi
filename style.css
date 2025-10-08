@@ -18,7 +18,7 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* نورهای نرم پس‌زمینه (زیر فریم) */
+/* افکت نور ملایم پس‌زمینه */
 body::before{
   content:"";
   position:absolute;
@@ -35,7 +35,7 @@ body::before{
   100%{transform:translate(-5%,5%)}
 }
 
-/* فریم شفاف و لوکس روی صحنه (بالای انیمیشن پس‌زمینه، زیر محتوا) */
+/* قاب ظریف و درخشان اطراف صحنه */
 body::after{
   content:"";
   position:absolute;
@@ -43,7 +43,6 @@ body::after{
   border-radius:18px;
   pointer-events:none;
   z-index:1;
-  /* قاب با گرادیان ملایم و درخشش لطیف */
   background:
     linear-gradient(#ffffff66,#ffffff66) padding-box,
     conic-gradient(from 0deg,
@@ -64,38 +63,60 @@ body::after{
   100%{filter:brightness(1); opacity:.95}
 }
 
-/* لوگو با شاین یکپارچه */
-.logo{
-  position:relative;
-  font-size:32px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-  margin-bottom:24px;
-  text-align:center;
-  background:linear-gradient(90deg,#0072ff,#00aaff,#33ccff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 0 10px rgba(0,170,255,.7));
-  overflow:hidden;
-  z-index:2;
+/* لوگوی JUST DO IT! با شاین نرم و طبیعی */
+.logo {
+  position: relative;
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  text-align: center;
+  background: linear-gradient(90deg, #0072ff 0%, #00aaff 40%, #33ccff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.6));
+  overflow: hidden;
+  z-index: 2;
 }
-.logo::after{
-  content:"";
-  position:absolute; top:0; left:-200%;
-  width:80%; height:100%;
-  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 70%);
-  opacity:.9; filter:blur(8px);
-  animation:shine 3.5s infinite ease-in-out;
+.logo::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 250%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.25) 25%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  animation: smoothShine 3.5s infinite ease-in-out;
+  opacity: 0.9;
+  pointer-events: none;
 }
-@keyframes shine{
-  0%{left:-200%;opacity:.3}
-  40%{opacity:1}
-  50%{left:200%;opacity:.8}
-  100%{left:200%;opacity:.3}
+@keyframes smoothShine {
+  0% {
+    transform: translateX(-60%) rotate(15deg);
+    opacity: 0.6;
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(60%) rotate(15deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(60%) rotate(15deg);
+    opacity: 0.6;
+  }
 }
 
-/* باکس ثبت‌نام */
+/* باکس فرم */
 .box{
   position:relative;
   background:#fff;
