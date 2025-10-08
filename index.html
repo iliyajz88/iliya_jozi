@@ -35,4 +35,106 @@
       <div>
         <label>Password</label>
         <!-- min 8 char -->
-        <input id="pw" type="password" placeholder="At
+        <input id="pw" type="password" placeholder="At least 8 characters" required minlength="8">
+        <div id="pwErr" class="err" aria-live="polite"></div>
+      </div>
+
+      <div>
+        <label>Confirm Password</label>
+        <!-- confirm password: bayad ba pw match bashe -->
+        <input id="pw2" type="password" placeholder="Re-enter password" required>
+        <!-- msg-e info baraye match/nomatch (error nist) -->
+        <div id="msg" class="match" aria-live="polite"></div>
+        <!-- error asli baraye pw2 -->
+        <div id="pw2Err" class="err" aria-live="polite"></div>
+      </div>
+
+      <!-- dokme submit sade -->
+      <button type="submit">Continue</button>
+
+      <div class="foot">Already have an account? <a href="#">Sign in</a></div>
+    </form>
+  </div>
+
+  <script>
+    // === bg music: faghat vaghti user click kone, unmute mishe ===
+    const music = document.getElementById("bg-music");
+    document.body.addEventListener("click", () => {
+      if (music.muted) { music.muted = false; music.play(); }
+    }, { once: true }); // ye bar kafiye
+
+    // === cache kardan element ha baraye sorat ===
+    const form  = document.getElementById('form');
+    const email = document.getElementById('email');
+    const pw    = document.getElementById('pw');
+    const pw2   = document.getElementById('pw2');
+
+    const emailErr = document.getElementById('emailErr');
+    const pwErr    = document.getElementById('pwErr');
+    const pw2Err   = document.getElementById('pw2Err');
+    const msg      = document.getElementById('msg');
+
+    // helper ha: error ro clean/set konam
+    const clearErr = (el, holder) => { el.setCustomValidity(''); holder.textContent = ''; };
+    const setErr   = (el, holder, text, validityKey='invalid') => {
+      el.setCustomValidity(validityKey);
+      holder.textContent = text;
+    };
+
+    // === validate email: khali nabashe va pattern ok ===
+    function validateEmail() {
+      clearErr(email, emailErr);
+      const v = email.value.trim();
+      if (!v) { setErr(email, emailErr, 'Please enter your email.', 'empty'); return false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+        setErr(email, emailErr, 'Please enter a valid email address.', 'pattern'); return false; }
+      return true;
+    }
+
+    // === validate password: khali nabashe va >= 8 char ===
+    function validatePw() {
+      clearErr(pw, pwErr);
+      const v = pw.value;
+      if (!v) { setErr(pw, pwErr, 'Please enter a password.', 'empty'); return false; }
+      if (v.length < 8) { setErr(pw, pwErr, 'Password must be at least 8 characters.', 'tooShort'); return false; }
+      return true;
+    }
+
+    // === validate confirm + show match message ===
+    function validatePw2() {
+      clearErr(pw2, pw2Err);
+
+      // info message: feedback zende
+      if (!pw2.value) { msg.textContent = ''; msg.className = 'match'; }
+      else if (pw.value === pw2.value) { msg.textContent = 'Passwords match'; msg.className = 'match ok'; }
+      else { msg.textContent = 'Passwords do not match'; msg.className = 'match'; }
+
+      // error haye asli
+      if (!pw2.value) { setErr(pw2, pw2Err, 'Please confirm your password.', 'empty'); return false; }
+      if (pw.value !== pw2.value) { setErr(pw2, pw2Err, 'Passwords do not match.', 'mismatch'); return false; }
+      return true;
+    }
+
+    // === events ===
+    email.addEventListener('input', () => { if (emailErr.textContent) validateEmail(); });
+    pw.addEventListener('input',   () => { if (pwErr.textContent) validatePw(); validatePw2(); });
+    pw2.addEventListener('input',  validatePw2);
+
+    email.addEventListener('blur', validateEmail);
+    pw.addEventListener('blur',    validatePw);
+    pw2.addEventListener('blur',   validatePw2);
+
+    // === submit: check all & focus first invalid ===
+    form.addEventListener('submit', (e) => {
+      email.value = email.value.trim();
+      const okEmail = validateEmail();
+      const okPw    = validatePw();
+      const okPw2   = validatePw2();
+      if (!(okEmail && okPw && okPw2)) {
+        e.preventDefault();
+        [email, pw, pw2].find(el => !el.checkValidity())?.focus();
+      }
+    });
+  </script>
+</body>
+</html>
