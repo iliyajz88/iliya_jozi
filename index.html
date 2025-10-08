@@ -17,6 +17,7 @@
 
   <div class="box">
     <h2>Create account</h2>
+
     <form id="form" novalidate>
       <div>
         <label>Email</label>
@@ -43,26 +44,85 @@
   </div>
 
   <script>
-    // فعال‌سازی موسیقی با اولین تعامل کاربر
+    // فعال‌سازی موسیقی با اولین تعامل
     const music = document.getElementById("bg-music");
     document.body.addEventListener("click", () => {
-      if (music.muted) {
-        music.muted = false;
-        music.play();
-      }
+      if (music.muted) { music.muted = false; music.play(); }
     }, { once: true });
 
     // المان‌ها
     const form = document.getElementById('form');
     const email = document.getElementById('email');
-    const pw = document.getElementById('pw');
-    const pw2 = document.getElementById('pw2');
-    const msg = document.getElementById('msg');
+    const pw    = document.getElementById('pw');
+    const pw2   = document.getElementById('pw2');
 
     const emailErr = document.getElementById('emailErr');
-    const pwErr = document.getElementById('pwErr');
-    const pw2Err = document.getElementById('pw2Err');
+    const pwErr    = document.getElementById('pwErr');
+    const pw2Err   = document.getElementById('pw2Err');
+    const msg      = document.getElementById('msg');
 
-    // --- اعتبارسنجی‌ها ---
-    function validateEmailField() {
-      // trim
+    // ابزار کمکی
+    const clearErr = (el, holder) => { el.setCustomValidity(''); holder.textContent = ''; };
+    const setErr   = (el, holder, text, validityKey='invalid') => { el.setCustomValidity(validityKey); holder.textContent = text; };
+
+    function validateEmail() {
+      clearErr(email, emailErr);
+      const v = email.value.trim();
+      // فقط روی submit، مقدار trim‌شده را نگه می‌داریم تا تایپ کاربر اذیت نشود
+      if (!v) { setErr(email, emailErr, 'Please enter your email.', 'empty'); return false; }
+      // checkValidity از نوع email استفاده می‌کند
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+        setErr(email, emailErr, 'Please enter a valid email address.', 'pattern');
+        return false;
+      }
+      return true;
+    }
+
+    function validatePw() {
+      clearErr(pw, pwErr);
+      const v = pw.value;
+      if (!v) { setErr(pw, pwErr, 'Please enter a password.', 'empty'); return false; }
+      if (v.length < 8) { setErr(pw, pwErr, 'Password must be at least 8 characters.', 'tooShort'); return false; }
+      return true;
+    }
+
+    function validatePw2() {
+      clearErr(pw2, pw2Err);
+
+      // پیام راهنمای تطابق (غیر اروری)
+      if (!pw2.value) { msg.textContent = ''; msg.className = 'match'; }
+      else if (pw.value === pw2.value) { msg.textContent = 'Passwords match'; msg.className = 'match ok'; }
+      else { msg.textContent = 'Passwords do not match'; msg.className = 'match'; }
+
+      if (!pw2.value) { setErr(pw2, pw2Err, 'Please confirm your password.', 'empty'); return false; }
+      if (pw.value !== pw2.value) { setErr(pw2, pw2Err, 'Passwords do not match.', 'mismatch'); return false; }
+      return true;
+    }
+
+    // رویدادها: حین تایپ، فقط پیام‌ها را به‌روز کنیم
+    email.addEventListener('input', () => { if (emailErr.textContent) validateEmail(); });
+    pw.addEventListener('input',   () => { if (pwErr.textContent) validatePw(); validatePw2(); });
+    pw2.addEventListener('input',  validatePw2);
+
+    // blur: خطای همان فیلد را نشان بده
+    email.addEventListener('blur', validateEmail);
+    pw.addEventListener('blur',    validatePw);
+    pw2.addEventListener('blur',   validatePw2);
+
+    // submit: همه را با هم بسنج، فوکوس روی اولین نامعتبر
+    form.addEventListener('submit', (e) => {
+      // ایمیل را روی submit trim کنیم
+      email.value = email.value.trim();
+
+      const okEmail = validateEmail();
+      const okPw    = validatePw();
+      const okPw2   = validatePw2();
+
+      if (!(okEmail && okPw && okPw2)) {
+        e.preventDefault();
+        [email, pw, pw2].find(el => !el.checkValidity())?.focus();
+      }
+    });
+  </script>
+</body>
+</html>
