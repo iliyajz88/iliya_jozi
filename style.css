@@ -2,42 +2,52 @@
 html,body{height:100%}
 body{
   font-family:Poppins,Arial,sans-serif;
-  background:linear-gradient(135deg,#dbeafe 0%,#e9eef3 40%,#fff 100%);
+  background:linear-gradient(-45deg,#dbeafe,#e9eef3,#ffffff,#cce0ff);
+  background-size:400% 400%;
+  animation:bgMove 10s ease infinite;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   height:100vh;
-  margin:0
+  margin:0;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 .logo{
   position:relative;
   font-size:30px;
   font-weight:800;
-  color:#005fa3;
+  text-transform:uppercase;
   letter-spacing:1.2px;
   margin-bottom:22px;
   text-align:center;
-  text-transform:uppercase;
-  overflow:hidden;
   background:linear-gradient(90deg,#005fa3,#0077cc,#0094ff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  overflow:hidden;
 }
 .logo::after{
   content:"";
   position:absolute;
   top:0;
-  left:-100%;
-  width:100%;
+  left:-150%;
+  width:50%;
   height:100%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.8),transparent);
-  animation:shine 4s infinite;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 70%);
+  opacity:.5;
+  filter:blur(10px);
+  animation:shine 4s infinite ease-in-out;
 }
 @keyframes shine{
-  0%{left:-100%}
-  50%{left:100%}
-  100%{left:100%}
+  0%{left:-150%;opacity:0}
+  20%{opacity:.7}
+  50%{left:150%;opacity:.5}
+  80%{opacity:0}
+  100%{left:150%;opacity:0}
 }
 .box{
   background:#fff;
