@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
   <header class="logo">JUST DO IT!</header>
   <div class="box">
     <h2>Create account</h2>
@@ -31,6 +35,11 @@
   </div>
 
   <script>
+    const music=document.getElementById("bg-music");
+    document.body.addEventListener("click",()=>{
+      if(music.paused){ music.play(); }
+    },{once:true});
+
     const form=document.getElementById('form');
     const pw=document.getElementById('pw');
     const pw2=document.getElementById('pw2');
