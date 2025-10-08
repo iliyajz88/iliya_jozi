@@ -21,20 +21,20 @@
       <div>
         <label>Email</label>
         <input id="email" type="email" placeholder="example@gmail.com" required>
-        <div id="emailErr" class="err"></div>
+        <div id="emailErr" class="err" aria-live="polite"></div>
       </div>
 
       <div>
         <label>Password</label>
         <input id="pw" type="password" placeholder="At least 8 characters" required minlength="8">
-        <div id="pwErr" class="err"></div>
+        <div id="pwErr" class="err" aria-live="polite"></div>
       </div>
 
       <div>
         <label>Confirm Password</label>
         <input id="pw2" type="password" placeholder="Re-enter password" required>
-        <div id="msg" class="match"></div>
-        <div id="pw2Err" class="err"></div>
+        <div id="msg" class="match" aria-live="polite"></div>
+        <div id="pw2Err" class="err" aria-live="polite"></div>
       </div>
 
       <button type="submit">Continue</button>
@@ -52,7 +52,7 @@
       }
     }, { once: true });
 
-    // عناصر
+    // المان‌ها
     const form = document.getElementById('form');
     const email = document.getElementById('email');
     const pw = document.getElementById('pw');
@@ -63,87 +63,6 @@
     const pwErr = document.getElementById('pwErr');
     const pw2Err = document.getElementById('pw2Err');
 
-    // پیام تطابق پسورد
-    function showPwMatchMessage() {
-      if (!pw2.value) {
-        msg.textContent = '';
-        msg.className = 'match';
-        pw2.setCustomValidity('');
-        return;
-      }
-      if (pw.value === pw2.value) {
-        msg.textContent = 'Passwords match';
-        msg.className = 'match ok';
-        pw2.setCustomValidity('');
-      } else {
-        msg.textContent = 'Passwords do not match';
-        msg.className = 'match';
-        pw2.setCustomValidity('no');
-      }
-    }
-
-    // اعتبارسنجی هر فیلد
+    // --- اعتبارسنجی‌ها ---
     function validateEmailField() {
-      const v = email.value.trim();
-      email.setCustomValidity('');
-      emailErr.textContent = '';
-
-      if (!v) {
-        email.setCustomValidity('empty');
-        emailErr.textContent = 'Please enter your email.';
-      } else if (!email.checkValidity()) {
-        email.setCustomValidity('invalid');
-        emailErr.textContent = 'Please enter a valid email address.';
-      }
-    }
-
-    function validatePwField() {
-      const v = pw.value;
-      pw.setCustomValidity('');
-      pwErr.textContent = '';
-
-      if (!v) {
-        pw.setCustomValidity('empty');
-        pwErr.textContent = 'Please enter a password.';
-      } else if (v.length < 8) {
-        pw.setCustomValidity('short');
-        pwErr.textContent = 'Password must be at least 8 characters.';
-      }
-    }
-
-    function validatePw2Field() {
-      const v = pw2.value;
-      pw2.setCustomValidity('');
-      pw2Err.textContent = '';
-
-      if (!v) {
-        pw2.setCustomValidity('empty');
-        pw2Err.textContent = 'Please confirm your password.';
-      } else if (pw.value !== v) {
-        // setCustomValidity در showPwMatchMessage هم ست می‌شود
-        pw2Err.textContent = 'Passwords do not match.';
-      }
-    }
-
-    // رویدادها
-    pw.addEventListener('input', () => { showPwMatchMessage(); validatePwField(); });
-    pw2.addEventListener('input', () => { showPwMatchMessage(); validatePw2Field(); });
-    email.addEventListener('input', validateEmailField);
-
-    email.addEventListener('blur', validateEmailField);
-    pw.addEventListener('blur', validatePwField);
-    pw2.addEventListener('blur', validatePw2Field);
-
-    form.addEventListener('submit', (e) => {
-      validateEmailField();
-      validatePwField();
-      showPwMatchMessage();
-      validatePw2Field();
-
-      if (!form.checkValidity()) {
-        e.preventDefault(); // جلوگیری از ادامه
-      }
-    });
-  </script>
-</body>
-</html>
+      // trim
