@@ -1,6 +1,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
+  position:relative;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(-45deg,#b5d8ff,#e1e9ff,#dbeafe,#b0d0ff);
   background-size:400% 400%;
@@ -17,15 +18,15 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* افکت نور نرم در پس‌زمینه */
+/* نورهای نرم پس‌زمینه (زیر فریم) */
 body::before{
   content:"";
   position:absolute;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.2) 0,transparent 40%),
-             radial-gradient(circle at 80% 80%,rgba(255,255,255,.2) 0,transparent 40%),
-             radial-gradient(circle at 60% 30%,rgba(255,255,255,.15) 0,transparent 40%);
+  inset:-10%;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.2) 0,transparent 45%),
+    radial-gradient(circle at 80% 80%,rgba(255,255,255,.18) 0,transparent 45%),
+    radial-gradient(circle at 60% 30%,rgba(255,255,255,.12) 0,transparent 45%);
   animation:stars 12s linear infinite alternate;
   z-index:0;
 }
@@ -34,7 +35,36 @@ body::before{
   100%{transform:translate(-5%,5%)}
 }
 
-/* لوگو درخشان */
+/* فریم شفاف و لوکس روی صحنه (بالای انیمیشن پس‌زمینه، زیر محتوا) */
+body::after{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border-radius:18px;
+  pointer-events:none;
+  z-index:1;
+  /* قاب با گرادیان ملایم و درخشش لطیف */
+  background:
+    linear-gradient(#ffffff66,#ffffff66) padding-box,
+    conic-gradient(from 0deg,
+      rgba(255,255,255,.0) 0%,
+      rgba(255,255,255,.35) 25%,
+      rgba(255,255,255,.0) 50%,
+      rgba(0,119,204,.35) 75%,
+      rgba(255,255,255,.0) 100%) border-box;
+  border:2px solid transparent;
+  box-shadow:
+    inset 0 0 24px rgba(255,255,255,.15),
+    0 0 40px rgba(0,119,204,.12);
+  animation:frameGlow 14s linear infinite;
+}
+@keyframes frameGlow{
+  0%{filter:brightness(1); opacity:.95}
+  50%{filter:brightness(1.08); opacity:1}
+  100%{filter:brightness(1); opacity:.95}
+}
+
+/* لوگو با شاین یکپارچه */
 .logo{
   position:relative;
   font-size:32px;
@@ -48,18 +78,14 @@ body::before{
   -webkit-text-fill-color:transparent;
   filter:drop-shadow(0 0 10px rgba(0,170,255,.7));
   overflow:hidden;
-  z-index:1;
+  z-index:2;
 }
 .logo::after{
   content:"";
-  position:absolute;
-  top:0;
-  left:-200%;
-  width:80%;
-  height:100%;
+  position:absolute; top:0; left:-200%;
+  width:80%; height:100%;
   background:radial-gradient(circle at 50% 50%,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 70%);
-  opacity:.9;
-  filter:blur(8px);
+  opacity:.9; filter:blur(8px);
   animation:shine 3.5s infinite ease-in-out;
 }
 @keyframes shine{
@@ -71,6 +97,7 @@ body::before{
 
 /* باکس ثبت‌نام */
 .box{
+  position:relative;
   background:#fff;
   width:370px;
   padding:28px 32px;
@@ -78,7 +105,7 @@ body::before{
   border:1px solid rgba(0,0,0,.08);
   box-shadow:0 8px 24px rgba(0,0,0,.15);
   transition:transform .15s ease,box-shadow .15s ease;
-  z-index:1;
+  z-index:2;
 }
 .box:focus-within{
   transform:translateY(-2px);
@@ -131,8 +158,7 @@ button{
 }
 button::before{
   content:"";
-  position:absolute;
-  inset:0;
+  position:absolute; inset:0;
   background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0) 60%);
   pointer-events:none;
 }
@@ -148,7 +174,6 @@ button:active{transform:translateY(1px)}
   color:#444;
 }
 .foot a{
-  color:#0077cc;
-  text-decoration:none;
+  color:#0077cc; text-decoration:none;
 }
 .foot a:hover{text-decoration:underline}
