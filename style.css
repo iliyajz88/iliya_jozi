@@ -99,21 +99,10 @@ body::after{
   pointer-events: none;
 }
 @keyframes smoothShine {
-  0% {
-    transform: translateX(-60%) rotate(15deg);
-    opacity: 0.6;
-  }
-  30% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateX(60%) rotate(15deg);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateX(60%) rotate(15deg);
-    opacity: 0.6;
-  }
+  0% { transform: translateX(-60%) rotate(15deg); opacity: 0.6; }
+  30% { opacity: 1; }
+  50% { transform: translateX(60%) rotate(15deg); opacity: 0.9; }
+  100% { transform: translateX(60%) rotate(15deg); opacity: 0.6; }
 }
 
 /* باکس فرم */
@@ -199,10 +188,10 @@ button:active{transform:translateY(1px)}
 }
 .foot a:hover{text-decoration:underline}
 
-/* متن خطا زیر فیلدها (افزوده شده) */
+/* ارورها: فقط متن قرمز */
 .err{
   font-size:12px;
   min-height:14px;
-  color:#444;     /* همسو با پالت فعلی */
+  color:#d93025; /* قرمز خوانا مخصوص ارور */
   margin-top:-4px;
 }
