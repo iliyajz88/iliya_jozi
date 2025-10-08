@@ -198,3 +198,11 @@ button:active{transform:translateY(1px)}
   color:#0077cc; text-decoration:none;
 }
 .foot a:hover{text-decoration:underline}
+
+/* متن خطا زیر فیلدها (افزوده شده) */
+.err{
+  font-size:12px;
+  min-height:14px;
+  color:#444;     /* همسو با پالت فعلی */
+  margin-top:-4px;
+}
