@@ -17,15 +17,15 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* نقاط نورانی آرام در پس‌زمینه */
+/* افکت نور نرم در پس‌زمینه */
 body::before{
   content:"";
   position:absolute;
   width:200%;
   height:200%;
-  background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.15) 0,transparent 40%),
-             radial-gradient(circle at 80% 80%,rgba(255,255,255,.15) 0,transparent 40%),
-             radial-gradient(circle at 60% 30%,rgba(255,255,255,.1) 0,transparent 40%);
+  background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.2) 0,transparent 40%),
+             radial-gradient(circle at 80% 80%,rgba(255,255,255,.2) 0,transparent 40%),
+             radial-gradient(circle at 60% 30%,rgba(255,255,255,.15) 0,transparent 40%);
   animation:stars 12s linear infinite alternate;
   z-index:0;
 }
@@ -46,7 +46,7 @@ body::before{
   background:linear-gradient(90deg,#0072ff,#00aaff,#33ccff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 0 8px rgba(0,170,255,.6));
+  filter:drop-shadow(0 0 10px rgba(0,170,255,.7));
   overflow:hidden;
   z-index:1;
 }
@@ -69,6 +69,7 @@ body::before{
   100%{left:200%;opacity:.3}
 }
 
+/* باکس ثبت‌نام */
 .box{
   background:#fff;
   width:370px;
@@ -81,20 +82,20 @@ body::before{
 }
 .box:focus-within{
   transform:translateY(-2px);
-  box-shadow:0 10px 28px rgba(0,0,0,.18)
+  box-shadow:0 10px 28px rgba(0,0,0,.18);
 }
 h2{
   text-align:center;
   margin-bottom:20px;
   color:#333;
   font-size:22px;
-  font-weight:600
+  font-weight:600;
 }
 form{display:grid;gap:14px}
 label{
   font-size:13px;
   color:#222;
-  font-weight:600
+  font-weight:600;
 }
 input{
   width:100%;
@@ -104,13 +105,13 @@ input{
   font-size:14px;
   outline:none;
   background:#fff;
-  transition:border-color .2s,box-shadow .2s,transform .06s
+  transition:border-color .2s,box-shadow .2s,transform .06s;
 }
 input::placeholder{color:#aaa;font-size:13px}
 input:hover{border-color:#bdbdbd}
 input:focus{
   border-color:#0077cc;
-  box-shadow:0 0 0 3px rgba(0,119,204,.15)
+  box-shadow:0 0 0 3px rgba(0,119,204,.15);
 }
 input:active{transform:scale(.998)}
 .match{font-size:12px;min-height:14px;color:#444;margin-top:-4px}
@@ -137,17 +138,17 @@ button::before{
 }
 button:hover{
   background:#f5b800;
-  box-shadow:0 6px 16px rgba(0,0,0,.2)
+  box-shadow:0 6px 16px rgba(0,0,0,.2);
 }
 button:active{transform:translateY(1px)}
 .foot{
   text-align:center;
   margin-top:10px;
   font-size:12px;
-  color:#444
+  color:#444;
 }
 .foot a{
   color:#0077cc;
-  text-decoration:none
+  text-decoration:none;
 }
 .foot a:hover{text-decoration:underline}
