@@ -35,11 +35,13 @@
   </div>
 
   <script>
+    // فعال‌سازی موسیقی با اولین کلیک کاربر
     const music=document.getElementById("bg-music");
     document.body.addEventListener("click",()=>{
       if(music.paused){ music.play(); }
     },{once:true});
 
+    // اعتبارسنجی پسورد
     const form=document.getElementById('form');
     const pw=document.getElementById('pw');
     const pw2=document.getElementById('pw2');
