@@ -1,11 +1,14 @@
+/* reset sade baraye consistency */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
+
 body{
+  /* font va bg gradient-e aramesh bakhsh */
   position:relative;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(-45deg,#b5d8ff,#e1e9ff,#dbeafe,#b0d0ff);
   background-size:400% 400%;
-  animation:bgMove 10s ease infinite;
+  animation:bgMove 10s ease infinite; /* move e background */
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -18,7 +21,7 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* افکت نور ملایم پس‌زمینه */
+/* noor haye latif posht zamine */
 body::before{
   content:"";
   position:absolute;
@@ -27,7 +30,7 @@ body::before{
     radial-gradient(circle at 20% 20%,rgba(255,255,255,.2) 0,transparent 45%),
     radial-gradient(circle at 80% 80%,rgba(255,255,255,.18) 0,transparent 45%),
     radial-gradient(circle at 60% 30%,rgba(255,255,255,.12) 0,transparent 45%);
-  animation:stars 12s linear infinite alternate;
+  animation:stars 12s linear infinite alternate; /* harekat kheyli zarf */
   z-index:0;
 }
 @keyframes stars{
@@ -35,7 +38,7 @@ body::before{
   100%{transform:translate(-5%,5%)}
 }
 
-/* قاب ظریف و درخشان اطراف صحنه */
+/* frame derakhshan gerd scene */
 body::after{
   content:"";
   position:absolute;
@@ -55,7 +58,7 @@ body::after{
   box-shadow:
     inset 0 0 24px rgba(255,255,255,.15),
     0 0 40px rgba(0,119,204,.12);
-  animation:frameGlow 14s linear infinite;
+  animation:frameGlow 14s linear infinite; /* tapanesh noor */
 }
 @keyframes frameGlow{
   0%{filter:brightness(1); opacity:.95}
@@ -63,7 +66,7 @@ body::after{
   100%{filter:brightness(1); opacity:.95}
 }
 
-/* لوگوی JUST DO IT! با شاین نرم و طبیعی */
+/* logo: gradient text + shine smooth */
 .logo {
   position: relative;
   font-size: 32px;
@@ -94,7 +97,7 @@ body::after{
   );
   mix-blend-mode: screen;
   filter: blur(6px);
-  animation: smoothShine 3.5s infinite ease-in-out;
+  animation: smoothShine 3.5s infinite ease-in-out; /* shine ro midam */
   opacity: 0.9;
   pointer-events: none;
 }
@@ -105,11 +108,11 @@ body::after{
   100% { transform: translateX(60%) rotate(15deg); opacity: 0.6; }
 }
 
-/* باکس فرم */
+/* card-e form */
 .box{
   position:relative;
   background:#fff;
-  width:370px;
+  width:370px; /* width ghashang baraye mobile+desktop */
   padding:28px 32px;
   border-radius:10px;
   border:1px solid rgba(0,0,0,.08);
@@ -121,6 +124,8 @@ body::after{
   transform:translateY(-2px);
   box-shadow:0 10px 28px rgba(0,0,0,.18);
 }
+
+/* title sade */
 h2{
   text-align:center;
   margin-bottom:20px;
@@ -128,12 +133,18 @@ h2{
   font-size:22px;
   font-weight:600;
 }
+
+/* layout grid sade */
 form{display:grid;gap:14px}
+
+/* label qavi va kootah */
 label{
   font-size:13px;
   color:#222;
   font-weight:600;
 }
+
+/* input ha: interaction states */
 input{
   width:100%;
   padding:10px;
@@ -148,18 +159,21 @@ input::placeholder{color:#aaa;font-size:13px}
 input:hover{border-color:#bdbdbd}
 input:focus{
   border-color:#0077cc;
-  box-shadow:0 0 0 3px rgba(0,119,204,.15);
+  box-shadow:0 0 0 3px rgba(0,119,204,.15); /* focus ring hamrang palette */
 }
 input:active{transform:scale(.998)}
+
+/* payam match: non-error info */
 .match{font-size:12px;min-height:14px;color:#444;margin-top:-4px}
-.ok{color:#0077cc}
+.ok{color:#0077cc} /* vaghti match ok mishe */
+
 button{
   position:relative;
   width:100%;
   padding:10px;
   border:0;
   border-radius:6px;
-  background:#f7ca00;
+  background:#f7ca00; /* btn zard brandish */
   color:#111;
   font-size:15px;
   font-weight:600;
@@ -177,6 +191,8 @@ button:hover{
   box-shadow:0 6px 16px rgba(0,0,0,.2);
 }
 button:active{transform:translateY(1px)}
+
+/* footer link sade */
 .foot{
   text-align:center;
   margin-top:10px;
@@ -188,10 +204,10 @@ button:active{transform:translateY(1px)}
 }
 .foot a:hover{text-decoration:underline}
 
-/* ارورها: فقط متن قرمز */
+/* error text: ghers readabl */
 .err{
   font-size:12px;
-  min-height:14px;
-  color:#d93025; /* قرمز خوانا مخصوص ارور */
+  min-height:14px; /* ta layout nakonad */
+  color:#d93025;  /* ghermez eror */
   margin-top:-4px;
 }
