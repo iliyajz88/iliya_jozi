@@ -1,14 +1,11 @@
-/* reset sade baraye consistency */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-
 body{
-  /* font va bg gradient-e aramesh bakhsh */
   position:relative;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(-45deg,#b5d8ff,#e1e9ff,#dbeafe,#b0d0ff);
   background-size:400% 400%;
-  animation:bgMove 10s ease infinite; /* move e background */
+  animation:bgMove 10s ease infinite;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -21,7 +18,7 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* noor haye latif posht zamine */
+/* افکت نور ملایم پس‌زمینه */
 body::before{
   content:"";
   position:absolute;
@@ -30,7 +27,7 @@ body::before{
     radial-gradient(circle at 20% 20%,rgba(255,255,255,.2) 0,transparent 45%),
     radial-gradient(circle at 80% 80%,rgba(255,255,255,.18) 0,transparent 45%),
     radial-gradient(circle at 60% 30%,rgba(255,255,255,.12) 0,transparent 45%);
-  animation:stars 12s linear infinite alternate; /* harekat kheyli zarf */
+  animation:stars 12s linear infinite alternate;
   z-index:0;
 }
 @keyframes stars{
@@ -38,54 +35,12 @@ body::before{
   100%{transform:translate(-5%,5%)}
 }
 
-/* ==== LOGO (JUST DO IT!) — narm va kam-darakhsh ==== */
-.logo {
-  position: relative;
-  font-size: 32px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 24px;
-  text-align: center;
-  background: linear-gradient(90deg, #0072ff 0%, #33b5ff 60%, #66ccff 100%); /* range hamhon */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 6px rgba(0, 170, 255, 0.30)); /* glow kootah va narm */
-  overflow: hidden;
-  z-index: 2;
-}
-.logo::after {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -120%;
-  width: 240%;
-  height: 180%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.12) 30%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  mix-blend-mode: screen;
-  filter: blur(8px);
-  animation: smoothShine 5.5s infinite ease-in-out; /* shine aram-tar */
-  opacity: 0.6; /* kam roshan */
-  pointer-events: none;
-}
-/* shine motion soft */
-@keyframes smoothShine {
-  0%   { transform: translateX(-60%) rotate(15deg); opacity: 0.4; }
-  50%  { transform: translateX(60%)  rotate(15deg); opacity: 0.7; }
-  100% { transform: translateX(60%)  rotate(15deg); opacity: 0.4; }
-}
-
-/* ==== FRAME dore scene — kheili soft o mahv, vali didani ==== */
+/* قاب خیلی نرم و محو دور صحنه (لطیف ولی قابل‌مشاهده) */
 body::after{
   content:"";
   position:absolute;
-  inset:20px;
-  border-radius:30px; /* gerdtar baraye softness */
+  inset:22px;                 /* کمی فاصله بیشتر، نرم‌تر دیده میشه */
+  border-radius:24px;         /* کمی گردتر نسبت به قبل */
   pointer-events:none;
   z-index:1;
   background:
@@ -95,4 +50,149 @@ body::after{
       rgba(255,255,255,.18) 25%,
       rgba(255,255,255,.0) 50%,
       rgba(0,119,204,.18) 75%,
-      rgba(255,255,255,.0) 100%) border-
+      rgba(255,255,255,.0) 100%) border-box;
+  border:1px solid transparent;      /* باریک‌تر از قبل */
+  box-shadow:
+    inset 0 0 14px rgba(255,255,255,.10),  /* نور داخلی لطیف */
+    0 0 26px rgba(0,119,204,.07);          /* سایه بیرونی خیلی نرم */
+  animation:frameGlow 12s linear infinite;
+  opacity:.78;                          /* محو ولی واضح */
+}
+@keyframes frameGlow{
+  0%{filter:brightness(1); opacity:.72}
+  50%{filter:brightness(1.05); opacity:.85}
+  100%{filter:brightness(1); opacity:.72}
+}
+
+/* لوگوی JUST DO IT! با درخشش نرم‌تر */
+.logo {
+  position: relative;
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  text-align: center;
+  background: linear-gradient(90deg, #0072ff 0%, #00aaff 40%, #33ccff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* ↓ درخشش ملایم‌تر نسبت به نسخه‌ی قبلی تو */
+  filter: drop-shadow(0 0 6px rgba(0, 170, 255, 0.30));
+  overflow: hidden;
+  z-index: 2;
+}
+.logo::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 250%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.18) 25%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  mix-blend-mode: screen;
+  filter: blur(7px);              /* کمی blur بیشتر = نرم‌تر */
+  animation: smoothShine 4.2s infinite ease-in-out;
+  opacity: 0.65;                  /* روشنایی کمتر از قبل */
+  pointer-events: none;
+}
+@keyframes smoothShine {
+  0%   { transform: translateX(-60%) rotate(15deg); opacity: 0.45; }
+  50%  { transform: translateX(60%)  rotate(15deg); opacity: 0.75; }
+  100% { transform: translateX(60%)  rotate(15deg); opacity: 0.45; }
+}
+
+/* باکس فرم */
+.box{
+  position:relative;
+  background:#fff;
+  width:370px;
+  padding:28px 32px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  transition:transform .15s ease,box-shadow .15s ease;
+  z-index:2; /* roye frame mimune */
+}
+.box:focus-within{
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(0,0,0,.18);
+}
+h2{
+  text-align:center;
+  margin-bottom:20px;
+  color:#333;
+  font-size:22px;
+  font-weight:600;
+}
+form{display:grid;gap:14px}
+label{
+  font-size:13px;
+  color:#222;
+  font-weight:600;
+}
+input{
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:14px;
+  outline:none;
+  background:#fff;
+  transition:border-color .2s,box-shadow .2s,transform .06s;
+}
+input::placeholder{color:#aaa;font-size:13px}
+input:hover{border-color:#bdbdbd}
+input:focus{
+  border-color:#0077cc;
+  box-shadow:0 0 0 3px rgba(0,119,204,.15);
+}
+input:active{transform:scale(.998)}
+.match{font-size:12px;min-height:14px;color:#444;margin-top:-4px}
+.ok{color:#0077cc}
+button{
+  position:relative;
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:6px;
+  background:#f7ca00;
+  color:#111;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .06s,background .2s,box-shadow .2s;
+}
+button::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0) 60%);
+  pointer-events:none;
+}
+button:hover{
+  background:#f5b800;
+  box-shadow:0 6px 16px rgba(0,0,0,.2);
+}
+button:active{transform:translateY(1px)}
+.foot{
+  text-align:center;
+  margin-top:10px;
+  font-size:12px;
+  color:#444;
+}
+.foot a{
+  color:#0077cc; text-decoration:none;
+}
+.foot a:hover{text-decoration:underline}
+
+/* ارورها: فقط متن قرمز */
+.err{
+  font-size:12px;
+  min-height:14px;
+  color:#d93025; /* قرمز خوانا مخصوص ارور */
+  margin-top:-4px;
+}
