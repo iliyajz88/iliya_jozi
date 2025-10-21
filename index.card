@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iliya jozi</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            /* background-color: rgb(58, 136, 204); */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        main{
+            width: 90%;
+            height: 100vh;
+            /* background-color:black; */
+       
+        }
+        .container
+        {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            column-gap: 10px;
+        }
+        .child{
+            width: 50%;
+            height: 200px;
+            background-color:rgb(155, 209, 234);
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0px 2px 20px rgba(12, 12, 12, 0.341);
+            border: 1px solid rgba(15, 99, 155, 0.349);
+            
+        }
+        h3{
+            padding: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p{
+            padding: 21px;
+            text-align: justify;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .chlid_right{
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+
+        }
+        .row{
+            width: 100%;
+            background-color:transparent;
+        }
+        @media (max-width:768px) {
+            .container{
+                flex-direction: column;
+                row-gap: 5px;
+            
+            }
+            .child{
+                width: 100%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="child">
+                <h3>student</h3>
+                <p>hello my name is iliya im 16 years old and im working on my site </p>
+            </div>
+            <div class="child chlid_right">
+                <div class="row row_1">
+                    <h3>Iliya</h3>
+                </div>
+                <div class="row row_2" style="height: 250px;">
+                    <p>seyed iliya jozi </p>
+                </div>
+                <div class="row row_3" >
+                    <h4 style="text-align: center; line-height: 55px;">Footer</h4>
+                </div>
+
+             
+            </div>
+        </div>
+
+    </main>
+    
+</body>
+</html>
