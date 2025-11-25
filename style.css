@@ -3,164 +3,117 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body{
-    flex-direction: column;
-    display: flex;
-    align-items: center;
     font-family: sans-serif;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
 }
-
 nav{
     width: 100%;
-    background-color: rgb(222, 225, 225);
 }
-
-.nav-inner{
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    padding: 0 16px;
-}
-
 menu{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-
-menu ul{
+    width: 100%;
+    background-color: black;
     display: flex;
     align-items: center;
-    list-style: none;
-}
-
-menu ul li a{
-    padding: 10px 14px;
-    color: rgb(8,8,8);
-    text-decoration: none;
-    transition: 0.25s ease;
-}
-
-menu ul li a:hover{
-    color: white;
-    background-color: rgb(87,94,94);
-    border-radius: 8px;
-}
-
-.nav-search{
-    display: flex;
-    align-items: center;
-}
-
-.nav-search input[type="search"]{
-    width: 180px;
-    padding: 8px 10px;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
-    transition: box-shadow 0.15s ease, width 0.2s ease;
-}
-
-.nav-search input[type="search"]:focus{
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    width: 240px;
-}
-
-main{
-    width: 90%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 13px;
-}
-
-.container{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.row{
-    width: 100%;
-    height: 33%;
-}
-
-.row_1, .row_2, .row_3{
-    display: flex;
-    gap: 5px;
-}
-
-.card{
-    width: 50%;
-    background-color: rgb(235, 235, 235);
-    border-radius: 10px;
-}
-
-.row_2 .card{
-    width: 100%;
-}
-
-.footer{
-    width: 100%;
-    background-color: rgb(161, 165, 165);
-    padding: 30px 16px;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-}
-
-.footer-container{
-    width: 100%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: auto;
+    padding: 0 15px;
+    justify-content: space-around;
     gap: 40px;
-    justify-items: center;
 }
-
-.footer-column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-column h4{
-    margin-bottom: 12px;
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-}
-
-.footer-column ul{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: center;
-}
-
-.footer-column ul li a{
+menu .left a{
+    color: white;
     text-decoration: none;
-    color: #555;
-    transition: 0.25s ease;
+    font-size: 20px;
+    font-weight: bold;
 }
-
-.footer-column ul li a:hover{
-    color: rgb(87,94,94);
+menu .center{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; 
 }
-
+menu .center ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+menu .center ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    display: block;
+}
+menu .center ul li a:hover{
+    background-color: #333;
+    color: #fff;
+    border-radius: 3px;
+}
+menu .right form{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+menu .right form input[type="search"]{
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+menu .right form input[type="submit"]{
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+menu .right form input[type="submit"]:hover{
+    background-color: #333;
+}
 @media (max-width: 768px){
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    menu{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    menu .left{
+        order: 1;
+        margin-bottom: 10px;
+    }
+
+    menu .center{
+        order: 2;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    menu .center ul{
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    menu .right{
+        order: 3;
+        margin-bottom: 5px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    menu .right form{
+        flex-direction: row; /* کنار هم بودن سرچ و دکمه */
+        gap: 5px;
+    }
+
+    menu .right form input[type="search"]{
+        width: 150px;
+    }
+
+    menu .right form input[type="submit"]{
+        width: auto;
     }
 }
